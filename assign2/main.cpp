@@ -13,8 +13,10 @@
 #include <set>
 #include <string>
 #include <unordered_set>
+#include <random>
+#include <algorithm>
 
-std::string kYourName = "STUDENT TODO"; // Don't forget to change this!
+std::string kYourName = "James Harden"; // Don't forget to change this!
 
 /**
  * Takes in a file name and returns a set containing all of the applicant names as a set.
@@ -28,7 +30,25 @@ std::string kYourName = "STUDENT TODO"; // Don't forget to change this!
  * to also change the corresponding functions in `utils.h`.
  */
 std::set<std::string> get_applicants(std::string filename) {
-  // STUDENT TODO: Implement this function.
+  std::ifstream ifs(filename);
+
+  std::set<std::string> applicants;
+
+  std::string name;
+  while(std::getline(ifs, name)) {
+    applicants.insert(name);
+  }
+
+  return applicants;
+}
+
+std::string get_initials(const std::string& name) {
+  std::string initials("  ");
+
+  initials[0] = name[0];
+  initials[1] = *(std::find(name.begin(), name.end(), ' ') + 1);
+
+  return initials;
 }
 
 /**
@@ -40,7 +60,17 @@ std::set<std::string> get_applicants(std::string filename) {
  * @return          A queue containing pointers to each matching name.
  */
 std::queue<const std::string*> find_matches(std::string name, std::set<std::string>& students) {
-  // STUDENT TODO: Implement this function.
+  std::queue<const std::string*> matches;
+
+  std::string pairs = get_initials(name);
+  for(const auto& student : students) {
+    std::string tt = get_initials(student);
+
+    if(pairs == tt) 
+      matches.push(&student);
+  }
+
+  return matches;
 }
 
 /**
@@ -54,7 +84,22 @@ std::queue<const std::string*> find_matches(std::string name, std::set<std::stri
  *                Will return "NO MATCHES FOUND." if `matches` is empty.
  */
 std::string get_match(std::queue<const std::string*>& matches) {
-  // STUDENT TODO: Implement this function.
+  if(matches.empty()) {
+    std::cout << "NO MATCHES FOUND." << std::endl;
+    return "";
+  }
+
+  std::random_device seed;
+  std::mt19937 gen(seed());
+  std::uniform_int_distribution<uint32_t> distribure(0, matches.size());
+  uint32_t times = distribure(gen);
+
+  while(times) {
+    matches.pop();
+    --times;
+  }
+  
+  return *(matches.front());  
 }
 
 /* #### Please don't remove this line! #### */
