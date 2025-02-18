@@ -1,0 +1,3 @@
+"C:\Program Files\CMake\bin\cmake.exe" -E rm -f CMakeFiles\gap_buffer_test.dir/objects.a
+C:\PROGRA~1\MSYS2\ucrt64\bin\ar.exe qc CMakeFiles\gap_buffer_test.dir/objects.a @CMakeFiles\gap_buffer_test.dir\objects1.rsp
+C:\PROGRA~1\MSYS2\ucrt64\bin\G__~1.EXE  -O0 -Wall -g2 -ggdb -Wl,--whole-archive CMakeFiles\gap_buffer_test.dir/objects.a -Wl,--no-whole-archive -o gap_buffer_test.exe -Wl,--out-implib,libgap_buffer_test.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\gap_buffer_test.dir\linkLibs.rsp

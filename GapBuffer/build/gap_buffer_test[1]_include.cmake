@@ -1,0 +1,5 @@
+if(EXISTS "C:/Users/chena/Desktop/CS106L-Self-Learning/assignments/GapBuffer/build/gap_buffer_test[1]_tests.cmake")
+  include("C:/Users/chena/Desktop/CS106L-Self-Learning/assignments/GapBuffer/build/gap_buffer_test[1]_tests.cmake")
+else()
+  add_test(gap_buffer_test_NOT_BUILT gap_buffer_test_NOT_BUILT)
+endif()
